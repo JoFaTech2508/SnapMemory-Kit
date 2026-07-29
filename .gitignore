@@ -1,22 +1,13 @@
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-*.egg-info/
 
 # macOS
 .DS_Store
-.AppleDouble
-.LSOverride
 
 # Project specific
 downloaded_memories/
-html/
-index.html
+export/
 *.pdf
 
 # IDE
