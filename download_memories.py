@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SnapMemory-Kit v1.0.0
+SnapMemory-Kit
 Downloads all Snapchat memories with correct dates and metadata
 """
 
@@ -40,11 +40,12 @@ if missing_packages:
         sys.exit(1)
 
 from modules import legacy_export, bundled_export
+from modules.constants import VERSION
 
 
 def main():
     print("╔════════════════════════════════════════════════════════╗")
-    print("║              SnapMemory-Kit v1.0.0                     ║")
+    print(f"║              SnapMemory-Kit v{VERSION}                     ║")
     print("╚════════════════════════════════════════════════════════╝")
     print()
 

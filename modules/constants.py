@@ -1,6 +1,8 @@
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+VERSION = "1.1.0"
+
 OUTPUT_DIR = Path("downloaded_memories")
 
 # Change timezone if needed: 'America/New_York', 'Europe/London', 'Asia/Tokyo', etc.
