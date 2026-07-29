@@ -387,6 +387,30 @@ class SnapchatMemoryDownloader:
             print(f"\nWARNING: Error merging image: {e}")
             return False
 
+    def set_video_creation_time(self, filepath, memory):
+        """Write the capture date into the video container's creation_time."""
+        if filepath.suffix.lower() not in VIDEO_EXTENSIONS:
+            return
+
+        creation_time = memory['date_utc'].strftime('%Y-%m-%dT%H:%M:%SZ')
+        temp_path = filepath.with_name(f"{filepath.stem}_meta_tmp{filepath.suffix}")
+
+        cmd = [
+            'ffmpeg', '-y',
+            '-i', str(filepath),
+            '-map_metadata', '0',
+            '-metadata', f'creation_time={creation_time}',
+            '-c', 'copy',
+            str(temp_path)
+        ]
+
+        result = subprocess.run(cmd, capture_output=True, check=False)
+        if result.returncode == 0 and temp_path.exists():
+            filepath.unlink()
+            temp_path.rename(filepath)
+        elif temp_path.exists():
+            temp_path.unlink()
+
     def merge_video_with_overlay(self, main_video_path, overlay_path, output_path):
         """Merge overlay PNG onto video using ffmpeg"""
         try:
@@ -464,6 +488,7 @@ class SnapchatMemoryDownloader:
                         # Only set EXIF on main file (not overlay)
                         if '_overlay' not in final_path.stem:
                             self.set_exif_data(final_path, memory)
+                            self.set_video_creation_time(final_path, memory)
 
                         # Set file dates LAST (after EXIF, so they don't get overwritten)
                         self.set_file_dates(final_path, memory['date_local'])
