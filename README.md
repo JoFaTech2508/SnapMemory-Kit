@@ -88,10 +88,10 @@ Files are organized by year inside each folder.
 
 ## Configuration
 
-Edit the timezone in `modules/legacy_export.py` and `modules/bundled_export.py` (both files):
+Edit the timezone in `modules/constants.py`:
 
 ```python
-LOCAL_TIMEZONE = ZoneInfo('Europe/Oslo')  # Change this
+LOCAL_TIMEZONE = ZoneInfo("Europe/Oslo")  # Change this
 ```
 
 Common timezones: `America/New_York`, `America/Los_Angeles`, `Europe/London`, `Asia/Tokyo`
