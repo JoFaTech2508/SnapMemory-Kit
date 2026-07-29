@@ -10,6 +10,7 @@ import os
 import re
 import shutil
 import subprocess
+import sys
 import zipfile
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
@@ -18,6 +19,10 @@ from zoneinfo import ZoneInfo
 
 from PIL import Image
 from tqdm import tqdm
+
+if __name__ == "__main__":
+    # Support running this file directly, not just via download_memories.py
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from modules.constants import OUTPUT_DIR, LOCAL_TIMEZONE, VIDEO_EXTENSIONS
 
