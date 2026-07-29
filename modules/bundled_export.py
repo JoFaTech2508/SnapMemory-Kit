@@ -19,10 +19,9 @@ from zoneinfo import ZoneInfo
 from PIL import Image
 from tqdm import tqdm
 
+from modules.constants import OUTPUT_DIR, LOCAL_TIMEZONE, VIDEO_EXTENSIONS
+
 EXPORT_DIR = Path("export")
-OUTPUT_DIR = Path("downloaded_memories")
-LOCAL_TIMEZONE = ZoneInfo("Europe/Oslo")
-VIDEO_EXTENSIONS = {".mp4", ".mov", ".avi", ".mkv"}
 
 
 def auto_extract_zips(export_dir):

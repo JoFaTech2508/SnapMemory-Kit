@@ -21,13 +21,9 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 from PIL import Image
 
-OUTPUT_DIR = Path("downloaded_memories")
+from modules.constants import OUTPUT_DIR, LOCAL_TIMEZONE, VIDEO_EXTENSIONS
+
 HTML_FILE = "export/html/memories_history.html"
-
-# Change timezone if needed: 'America/New_York', 'Europe/London', 'Asia/Tokyo', etc.
-LOCAL_TIMEZONE = ZoneInfo('Europe/Oslo')
-
-VIDEO_EXTENSIONS = {'.mp4', '.mov', '.avi', '.mkv'}
 
 
 class SnapchatMemoryDownloader:
