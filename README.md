@@ -42,14 +42,26 @@ sudo apt install exiftool ffmpeg
 
 ## Setup
 
-Place the script in the same folder as your Snapchat export:
+Create an `export` folder next to the script, and put your Snapchat export inside it. Snapchat gives you one of two formats - either works, the script detects which one you have automatically:
 
+**Download-link export:**
 ```
 Your-Folder/
-├── html/
-│   └── memories_history.html
+├── export/
+│   └── html/
+│       └── memories_history.html
 └── download_memories.py
 ```
+
+**Bundled-files export** (the zip files Snapchat gives you, zipped or already unzipped):
+```
+Your-Folder/
+├── export/
+│   └── (the zip files, or the unzipped memories/json/html folders)
+└── download_memories.py
+```
+
+If `export` doesn't exist yet, just run the script once - it creates the folder for you.
 
 ## Usage
 
@@ -58,9 +70,10 @@ cd /path/to/your/folder
 python3 download_memories.py
 ```
 
-The script will auto-install dependencies on first run.
+The script will auto-install dependencies on first run, then detect your export type automatically.
 
-Choose test mode (5 files) or full download when prompted.
+- Download-link export: choose test mode (5 files) or full download when prompted.
+- Bundled-files export: choose dry run first to preview, then run again for real.
 
 ## Output Structure
 
@@ -75,7 +88,7 @@ Files are organized by year inside each folder.
 
 ## Configuration
 
-Edit the script to change your timezone:
+Edit the timezone in `modules/legacy_export.py` and `modules/bundled_export.py` (both files):
 
 ```python
 LOCAL_TIMEZONE = ZoneInfo('Europe/Oslo')  # Change this
@@ -85,11 +98,11 @@ Common timezones: `America/New_York`, `America/Los_Angeles`, `Europe/London`, `A
 
 ## Troubleshooting
 
-**Missing HTML file?**
-Make sure `html/memories_history.html` exists in your folder.
+**No Snapchat export found?**
+Make sure `export/` contains either `html/memories_history.html`, or the zip files Snapchat gave you.
 
-**Download interrupted?**
-Run again - already downloaded files are skipped automatically.
+**Run interrupted?**
+Run again - already processed files are skipped automatically.
 
 **Wrong dates shown?**
 Import to Photos/Google Photos - they'll read the EXIF data correctly.
