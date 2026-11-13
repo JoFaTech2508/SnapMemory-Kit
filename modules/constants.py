@@ -1,7 +1,7 @@
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 
 OUTPUT_DIR = Path("downloaded_memories")
 
