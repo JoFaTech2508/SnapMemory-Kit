@@ -20,3 +20,6 @@ export/
 *.log
 *.tmp
 _temp_*/
+
+# Other
+docs/
