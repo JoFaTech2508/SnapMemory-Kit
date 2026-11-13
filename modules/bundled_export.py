@@ -312,10 +312,11 @@ RESULT_LABELS = {
 
 
 def run(dry_run=True):
+    # Unzip first: the manifest itself is inside one of the zips
+    auto_extract_zips(EXPORT_DIR)
     manifest_path = find_manifest()
     entries = load_manifest_entries(manifest_path)
 
-    auto_extract_zips(EXPORT_DIR)
     guid_time, guid_files = index_files_by_guid_and_time(EXPORT_DIR)
 
     matches, unresolved = match_entries_to_guids(entries, guid_time)
