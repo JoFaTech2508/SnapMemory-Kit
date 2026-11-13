@@ -268,6 +268,7 @@ def process_one(item, guid_files, dry_run):
     if dry_run:
         return "would_process"
 
+    final_dst = None
     try:
         for folder in ("final", "no_filters", "overlays"):
             (OUTPUT_DIR / folder / year).mkdir(parents=True, exist_ok=True)
@@ -294,6 +295,12 @@ def process_one(item, guid_files, dry_run):
                 set_exif_data(path, item)
                 set_video_creation_time(path, item)
                 set_file_dates(path, item["date_local"])
+    except KeyboardInterrupt:
+        # A half-written file in final/ would count as "done" on the next
+        # run, so remove it and let the next run redo this memory.
+        if final_dst is not None and final_dst.exists():
+            final_dst.unlink()
+        raise
     except Exception as e:
         print(f"\nWARNING: Failed to process {stem}: {e}")
         return "failed"

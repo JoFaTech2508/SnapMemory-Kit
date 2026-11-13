@@ -74,4 +74,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\nStopped. Nothing is lost - run again and it picks up where it left off.")
+        sys.exit(130)
