@@ -75,6 +75,14 @@ The script will auto-install dependencies on first run, then detect your export 
 - Download-link export: choose test mode (5 files) or full download when prompted.
 - Bundled-files export: choose dry run first to preview, then run again for real.
 
+### Updating with a new export
+
+Already have a backup and want the newest memories? Request a new export
+from Snapchat (picking "all time" is fine), empty `export/`, put the new
+files in and run the script again. Memories you already have in
+`downloaded_memories/final/` are skipped, so only the new ones are added.
+The dry run shows how many are new before anything is written.
+
 ## Output Structure
 
 ```
@@ -102,7 +110,9 @@ Common timezones: `America/New_York`, `America/Los_Angeles`, `Europe/London`, `A
 Make sure `export/` contains either `html/memories_history.html`, or the zip files Snapchat gave you.
 
 **Run interrupted?**
-Run again - already processed files are skipped automatically.
+Pressing Ctrl+C is safe. Run the script again and it picks up where it
+left off. Memories that are already done are skipped, and one that was
+cut off halfway is redone.
 
 **Wrong dates shown?**
 Import to Photos/Google Photos - they'll read the EXIF data correctly.
